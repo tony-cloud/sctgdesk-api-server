@@ -222,9 +222,9 @@ pub async fn build_rocket(figment: Figment) -> Rocket<Build> {
     rocket
 }
 
-pub fn check_session(token: &str) -> bool {
+pub async fn check_session(token: &str) -> bool {
     let _token = Token::from_str(token);
-    !ApiState::find_session(_token).is_none()
+    !ApiState::find_session(_token).await.is_none()
 }
 
 /// # User Login
