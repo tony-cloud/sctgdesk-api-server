@@ -222,6 +222,11 @@ pub async fn build_rocket(figment: Figment) -> Rocket<Build> {
     rocket
 }
 
+pub fn check_session(token: &str) -> bool {
+    let _token = Token::from_str(token);
+    !ApiState::find_session(_token).is_none()
+}
+
 /// # User Login
 ///
 /// This function is an API endpoint that allows a user to log in without oauth.
